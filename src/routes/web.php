@@ -19,3 +19,4 @@ use App\Http\Controllers\ReserveController;
 Route::middleware('auth')->group(function () {
     Route::get('/', [ShopController::class, 'index']);
 });
+Route::get('/detail/:shop_{id}', [ShopController::class, 'detail']);

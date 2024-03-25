@@ -12,4 +12,10 @@ class ShopController extends Controller
         $shops = Shop::all();
         return view('index', ['shops' => $shops]);
     }
+
+    public function detail($id)
+    {
+        $shopdetail = Shop::find($id);
+        return view('detail', compact('shopdetail'));
+    }
 }
