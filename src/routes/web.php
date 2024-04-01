@@ -16,8 +16,11 @@ use App\Http\Controllers\ReserveController;
 |
 */
 
-Route::middleware('auth')->group(function () {
-    Route::get('/', [ShopController::class, 'index']);
-});
+
+Route::get('/', [ShopController::class, 'index']);
 Route::get('/detail/:shop_{id}', [ShopController::class, 'detail']);
 Route::post('/done', [ReserveController::class, 'create']);
+
+Route::middleware('auth')->group(function () {
+Route::get('/mypage', [AuthController::class, 'show']);
+});

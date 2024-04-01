@@ -13,7 +13,6 @@
             <div class="genre__content">#{{ $shopdetail->genres->genre }}</div>
             <div class="genre__content">#{{ $shopdetail->overview }}</div>
         </tr>
-
         <form action="/done" method="post" class="reserve__button">
             @csrf
             <input type="hidden" name="shop_id" value="{{ $shopdetail->shop_id }}">
@@ -30,8 +29,6 @@
                     <div class="text-secondary sales-delete" type="button"><i class="fas fa-2x fa-minus-circle"></i></div>
                 </div>
             </div>
-
-
             {{-- 時間 --}}
             <div class="form-group">
                 <select name="car_time" id="car_time" style="">
@@ -39,14 +36,13 @@
                     @for ($i = 7; $i <= 20; $i++)
                         @for ($j = 0; $j <= 5; $j++)
                             <option label="{{ $i }}:{{ $j }}0"
-                                value="{{ $i }}:{{ $j }}0">{{ $i }}:{{ $j }}0
+                                value="{{ $i }}:{{ $j }}0">
+                                {{ $i }}:{{ $j }}0
                             </option>
                         @endfor
                     @endfor
                 </select>
             </div>
-
-
             {{-- 人数 --}}
             <div class="form-group">
                 <select class="form-select" id="number-of-people" name="number_of_people">
@@ -56,9 +52,13 @@
                     @endfor
                 </select>
             </div>
-
-            <button class="reserve__button-submit" type="submit">予約する</button>
+            @if (Auth::check())
+                <button class="reserve__button-submit" type="submit">予約する</button>
+            @else
+                <div class="login__link">
+                    <a class="login__button-submit" href="/login">予約する</a>
+                </div>
+            @endif
         </form>
-
     </table>
 @endsection
