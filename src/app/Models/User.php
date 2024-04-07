@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Reserve;
+use App\Models\Bookmark;
 
 class User extends Authenticatable
 {
@@ -46,5 +47,9 @@ class User extends Authenticatable
     public function reserves()
     {
         return $this->hasMany(Reserve::class, 'user_id', 'name');
+    }
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class, 'user_id', 'name');
     }
 }

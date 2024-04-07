@@ -15,8 +15,8 @@ class CreateBookmarksTable extends Migration
     {
         Schema::create('bookmarks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('shop_id')->references('id')->on('shops');
+            $table->foreignId('user_id')->references('id')->on('users')->nullable();;
+            $table->foreignId('shop_id')->references('id')->on('shops')->nullable();;
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });
