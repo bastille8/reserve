@@ -6,6 +6,7 @@
 
 @section('content')
     <table>
+        <div><a href="/shopedit" class="btn-primary">店舗登録</a></div>
         <div class="search">
             <form action="/" method="get">
                 @csrf
@@ -20,11 +21,11 @@
                     <div>
                         <label for="">
                             <div>
-                                <select name="genre" data-toggle="select">
+                                <select name="genre_id" data-toggle="select">
                                     <option value="">All genre</option>
-                                    @foreach ($genres as $genres)
-                                        <option value="{{ $genres->genre }}"
-                                            @if ($genres == '{{ $genres->genre }}') selected @endif>{{ $genres->genre }}
+                                    @foreach ($allgenre as $genres)
+                                        <option value="{{ $genres->id }}"
+                                            @if ($genres == '{{ $genres->id }}') selected @endif>{{ $genres->genre }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -34,12 +35,12 @@
                     <div>
                         <label for="">
                             <div>
-                                <select name="area" data-toggle="select">
+                                <select name="area_id" data-toggle="select">
                                     <option value="">All area</option>
-                                    @foreach ($areas as $areas)
-                                        <option value="{{ $areas->area }}"
-                                            @if ($areas == '{{ $shops->areas->area }}') selected @endif>
-                                            {{ $areas->area }}</option>
+                                    @foreach ($allarea as $areas)
+                                        <option value="{{ $areas->id }}"
+                                            @if ($areas == '{{ $areas->id }}') selected @endif>{{ $areas->area }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -51,28 +52,28 @@
                 </div>
             </form>
         </div>
-        @foreach ($shops as $shops)
+        @foreach ($search as $search)
             <div class="card">
                 <div class="img__inner">
                     <div class="img__card">
-                        <img src="{{ $shops->image }}" alt="no image" class="img-item"></img>
+                        <img src="{{ $search->image }}" alt="no image" class="img-item"></img>
                     </div>
                 </div>
                 <div class="card__content">
-                    <div class="shop__content">{{ $shops->shop }}</div>
-                    <div class="area__content">#{{ $shops->areas->area }}</div>
-                    <div class="genre__content">#{{ $shops->genres->genre }}</div>
-                    <div><a href="/detail/:shop_{{ $shops->id }}" class="btn-primary">詳しく見る</a></div>
+                    <div class="shop__content">{{ $search->shop }}</div>
+                    <div class="area__content">#{{ $search->areas->area }}</div>
+                    <div class="genre__content">#{{ $search->genres->genre }}</div>
+                    <div><a href="/detail/:shop_{{ $search->id }}" class="btn-primary">詳しく見る</a></div>
                     @if ($bookmark == true)
                         <form action="/unbookmark" method="post" class="unbookmark__button">
                             @csrf
-                            <input type="hidden" name="shop_id" value="{{ $shops->shop_id }}">
+                            <input type="hidden" name="shop_id" value="{{ $search->shop_id }}">
                             <button class="unbookmark__button-submit" type="submit">いいね</button>
                         </form>
                     @else
                         <form action="/bookmark" method="post" class="bookmark__button">
                             @csrf
-                            <input type="hidden" name="shop_id" value="{{ $shops->shop_id }}">
+                            <input type="hidden" name="shop_id" value="{{ $search->shop_id }}">
                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                             <button class="bookmark__button-submit" type="submit">いいね</button>
                         </form>

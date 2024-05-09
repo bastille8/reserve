@@ -16,6 +16,7 @@
                     <div class="days__content">{{ $reserve->days }}</div>
                     <div class="times__content">{{ $reserve->times }}</div>
                     <div class="numbers__content">{{ $reserve->numbers }}</div>
+                    <div><a href="/detail/:shop_{{ $reserve->shops->id }}" class="btn-primary">予約情報の変更</a></div>
                 </div>
             @endforeach
             @foreach ($bookmark as $bookmark)

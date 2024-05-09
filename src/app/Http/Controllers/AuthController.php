@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeEmail;
 use Illuminate\Http\Request;
 use App\Models\Bookmark;
 use App\Models\Reserve;
@@ -17,4 +19,5 @@ class AuthController extends Controller
         $bookmark = Bookmark::where('user_id', $user_id)->get();
         return view('mypage', compact('reserve', 'bookmark'));
     }
+    
 }

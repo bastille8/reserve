@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Bookmark;
+use App\Models\Review;
 use App\Models\Reserve;
 use App\Models\Area;
 use App\Models\Genre;
@@ -44,5 +45,9 @@ class Shop extends Model
     public function bookmarks()
     {
         return $this->hasMany(Bookmark::class, 'shop_id', 'shop');
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'shop_id', 'shop');
     }
 }

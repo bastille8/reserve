@@ -23,6 +23,7 @@
             margin: 10px;
         }
     </style>
+    @livewireStyles
 </head>
 
 <body>
@@ -30,6 +31,7 @@
     <div class="content">
         @yield('content')
     </div>
+    @livewireScripts
 </body>
 
 </html>

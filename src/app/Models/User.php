@@ -9,9 +9,13 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Reserve;
 use App\Models\Bookmark;
+use App\Models\Review;
 
-class User extends Authenticatable
+
+
+class User extends Authenticatable implements MustVerifyEmail
 {
+
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -44,6 +48,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
     public function reserves()
     {
         return $this->hasMany(Reserve::class, 'user_id', 'name');
@@ -51,5 +56,9 @@ class User extends Authenticatable
     public function bookmarks()
     {
         return $this->hasMany(Bookmark::class, 'user_id', 'name');
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'user_id', 'name');
     }
 }

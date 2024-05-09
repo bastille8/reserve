@@ -9,12 +9,18 @@
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     @yield('css')
+    @livewireStyles
 </head>
 
 <body>
     <header class="header">
         <div class="header__inner">
+            <form action="/main" method="get" class="main__button">
+                @csrf
+                <button class="reserve__button-submit" type="submit">メインメニュー</button>
+            </form>
             <div class="header-utilities">
+                <!--a@livewire('modal')-->
                 <a class="header__logo" href="/">
                     Rese
                 </a>
@@ -34,10 +40,10 @@
             </div>
         </div>
     </header>
-
     <main>
         @yield('content')
     </main>
+    @livewireScripts
 </body>
 
 </html>
